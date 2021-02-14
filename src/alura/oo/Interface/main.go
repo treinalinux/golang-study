@@ -7,6 +7,16 @@ import (
 	"os/exec"
 )
 
+// PagarBoleto com verificar conta
+func PagarBoleto(conta verificarConta, valorDoBoleto float64) {
+	conta.Sacar(valorDoBoleto)
+}
+
+// Interface criada
+type verificarConta interface {
+	Sacar(valor float64) string
+}
+
 func main() {
 	//	contaDoAlan := contas.ContaCorrente{Titular: clientes.Titular{
 	//		Nome:      "Alan",
@@ -21,17 +31,14 @@ func main() {
 	limpar.Stdout = os.Stdout
 	limpar.Run()
 
-	fmt.Println("")
-
-	contaDoAlan := contas.ContaPoupanca{}
+	contaDoAlan := contas.ContaCorrente{}
 	contaDoAlan.Depositar(100)
-	contaDoAlan.Sacar(15)
+	PagarBoleto(&contaDoAlan, 30)
+	fmt.Println("Alan, boleto pago, saldo atual:\t\t R$", contaDoAlan.ObterSaldo())
 
-	fmt.Println("Saldo em conta do Alan:\t R$", contaDoAlan.ObterSaldo())
-
-	contaDoCarla := contas.ContaCorrente{}
+	contaDoCarla := contas.ContaPoupanca{}
 	contaDoCarla.Depositar(100)
-	contaDoCarla.Sacar(10)
+	PagarBoleto(&contaDoCarla, 90)
+	fmt.Println("Carla, boleto pago, saldo atual:\t R$", contaDoCarla.ObterSaldo())
 
-	fmt.Println("Saldo em conta Carla:\t R$", contaDoCarla.ObterSaldo())
 }
