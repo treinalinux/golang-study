@@ -1,9 +1,10 @@
 package main
 
 import (
-	"alura/oo/Composicao/clientes"
 	"alura/oo/Composicao/contas"
 	"fmt"
+	"os"
+	"os/exec"
 )
 
 func main() {
@@ -14,8 +15,16 @@ func main() {
 	//		NumeroAgencia: 123, NumeroConta: 12234, Saldo: 1000}
 	//
 	//	fmt.Println(contaDoAlan)
-	clienteAlan := clientes.Titular{"Alan", "123.111.127.12", "Desenvolvedor"}
-	contaDoAlan := contas.ContaCorrente{clienteAlan, 123, 12234, 1000}
 
-	fmt.Println(contaDoAlan)
+	// Limpar a tela do terminal
+	limpar := exec.Command("clear")
+	limpar.Stdout = os.Stdout
+	limpar.Run()
+
+	fmt.Println("")
+
+	contaDoAlan := contas.ContaCorrente{}
+	contaDoAlan.Depositar(100)
+
+	fmt.Println("Saldo em conta: R$", contaDoAlan.ObterSaldo())
 }
