@@ -7,11 +7,14 @@ import (
 func main() {
 	fmt.Println(" Concorrência - Programação Assíncrona")
 	// Por padrão goroutines não pode compartilhar informação, por isso usuremos o channel
+	// Canais são síncronos, alguém precisa consumir o canal
 	fmt.Println(" Retornando valores com channel")
 
 	var limite int
-	canal1 := make(chan int)
-	canal2 := make(chan int)
+	// Ao receber valores (200 e 500) os channels deixam de ser síncronos
+	// por causa do buffer dos channels
+	canal1 := make(chan int, 2000)
+	canal2 := make(chan int, 500)
 	fmt.Print("Informe um limite: ")
 	fmt.Scanf("%d", &limite)
 	/*
@@ -25,8 +28,9 @@ func main() {
 		for i := 0; i <= n*10; i++ {
 			fmt.Printf(" - |anônimo| O número é %d \n", i)
 			resultado = i * 10
+			canal2 <- resultado
 		}
-		canal2 <- resultado
+		// canal2 <- resultado #Movido para o for acima
 	}(limite)
 	for i := 0; i <= limite*10; i++ {
 		fmt.Printf(" - |main| O número é %d \n", i)
@@ -48,6 +52,7 @@ func conteAte(limite int, canal chan int) {
 	for i := 0; i <= limite*20; i++ {
 		fmt.Printf(" - |conteAte| O número é %d \n", i)
 		resultado = i * 20
+		canal <- resultado
 	}
-	canal <- resultado
+	// canal <- resultado # Movido para o form acima
 }
