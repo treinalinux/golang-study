@@ -6,6 +6,23 @@ import (
 	estrutura "treinalinux.com/alanalves/carros"
 )
 
+/*
+	O código atual foi refatorado para a criação do pacote em:
+	/home/alan/go/src/treinalinux.com/alanalves/carros/estruturas.go
+	Aqui no código main ele foi chamado com:
+
+	apelido   caminho
+	estrutura "treinalinux.com/alanalves/carros"
+
+	Outra obsevação é que antes o arquivo estruturas.go em estrutura ...
+	teve o build e o install:
+	/home/alan/go/src/treinalinux.com/alanalves/carros $ go build
+	/home/alan/go/src/treinalinux.com/alanalves/carros $ go install
+
+	Com isso um link carros.a foi criado no caminho abaixo e pode ser chamado aqui.
+	/home/alan/go/pkg/linux_amd64/treinalinux.com/alanalves/carros.a
+
+*/
 func main() {
 	fmt.Println("Trabalhando com interfaces")
 	fmt.Println(".................")
