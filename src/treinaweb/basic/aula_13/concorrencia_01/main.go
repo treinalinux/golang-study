@@ -3,8 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Concorrência - Programação Assíncrona")
-	fmt.Println(" 1º Vamos deProgramação síncrona")
+	fmt.Println(" Concorrência - Programação Assíncrona")
+	fmt.Println(" 1º Vamos de Programação síncrona")
+	fmt.Println(" Ele vai contar o conteAte e depois o main ")
 
 	var limite int
 	fmt.Print("Informe um limite: ")
