@@ -36,9 +36,10 @@ func main() {
 		*/
 	}
 	// time.Sleep(10 * time.Second) # Uso não é maus necessário por causa do canal
-	resultadoCanal1 := <-canal1
-	resultadoCanal2 := <-canal2
-	fmt.Printf("Canal 1 = %d, Canal 2 %d \n", resultadoCanal1, resultadoCanal2)
+	// resultadoCanal1 := <-canal1
+	// resultadoCanal2 := <-canal2
+	// fmt.Printf("Canal 1 = %d, Canal 2 %d \n", resultadoCanal1, resultadoCanal2)
+	fmt.Printf("Canal 1 = %d, Canal 2 %d \n", <-canal1, <-canal2)
 }
 
 // conteAte o limite, agora com um canal de parametro
